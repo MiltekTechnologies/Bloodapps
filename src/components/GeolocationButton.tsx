@@ -1,0 +1,62 @@
+import { Geolocation,Geoposition} from '@ionic-native/geolocation';
+
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { IonButton, IonLoading, IonToast } from '@ionic/react';
+import React, { useState, constructor } from 'react';
+
+interface LocationError {
+    showError: boolean;
+    message?: string;
+}
+
+
+
+
+const GeolocationButton: React.FC = () => {
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<LocationError>({ showError: false });
+    const [position, setPosition] = useState<Geoposition>();
+    const [locateres,setLocateres]=useState<NativeGeocoderResult>();
+
+
+    const getLocation = async () => {
+        setLoading(true);
+        
+
+        try {
+            const position = await Geolocation.getCurrentPosition();
+            
+            setPosition(position);
+            setLoading(false);
+            setError({ showError: false });
+            const latitudefetch=position.coords.latitude;
+            const longitudefetch=position.coords.longitude;
+            console.log(latitudefetch);
+            console.log(longitudefetch);
+            
+        } catch (e) {
+            setError({ showError: true, message: e.message });
+            setLoading(false);
+        }
+    }
+
+    return (
+        
+        <>
+            <IonLoading
+                isOpen={loading}
+                onDidDismiss={() => setLoading(false)}
+                message={'Getting Location...'}
+            />
+            <IonToast
+                isOpen={error.showError}
+                onDidDismiss={() => setError({ message: "", showError: false })}
+                message={error.message}
+                duration={3000}
+            />
+            <IonButton expand="full" color="secondary" onClick={getLocation}>{position ? `${position.coords.latitude} ${position.coords.longitude}` : "Get Location"}</IonButton>
+        </>
+    );
+};
+
+export default GeolocationButton;
