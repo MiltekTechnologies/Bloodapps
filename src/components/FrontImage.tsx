@@ -3,6 +3,7 @@ import { IonList, IonItem, IonThumbnail, IonImg, IonLabel, IonContent, IonButton
 import Tab1 from '../pages/Tab1';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
+import './Frontimage.css'
 
 
 // type Item = {
@@ -13,31 +14,18 @@ import { Redirect, Route } from 'react-router-dom';
 
  const Frontimage: React.FC = () => {
 
-  // const toregister =()=>{
-
-  //   <IonReactRouter>
-  //     <IonTabs>
-  //       <IonRouterOutlet>
-  //         <Route path="/tab1" component={Tab1} exact={true} />
-  //         </IonRouterOutlet>
-  //         </IonTabs>
-  //         </IonReactRouter>
-
-  // };
+ 
 
 
   return(
    <React.Fragment>
-   {/* <IonContent>
-     <IonList> */}
-      {/* {items.map((image, i) => (</IonList> */}
-        {/* <IonItem >
-          <IonThumbnail slot="start"> */}
-            <img 
+   
+            <IonImg className="image-background"
             src= "assets/image.png"
             alt="sample"
-            height={500}
-            width={800}/>
+            
+           />
+           
             <IonRow>
           <IonCol className="ion-text-center"> 
             <IonButton routerLink="/register" >

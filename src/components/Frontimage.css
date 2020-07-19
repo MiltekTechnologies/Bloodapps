@@ -1,0 +1,5 @@
+.image-background {
+    background: no-repeat cover fixed center;
+    -webkit-background-size:cover;
+    background-size: cover;
+}
